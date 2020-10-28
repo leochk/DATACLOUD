@@ -1,7 +1,7 @@
 package datacloud.scala.tpobject.catalogue
 
 class CatalogueWithNonMutable extends Catalogue {
-  private var map: Map[String, Double] = Map();
+  protected var map: Map[String, Double] = Map();
    
    override def getPrice(produit: String): Double = {
      if (!map.contains(produit)) return -1.0

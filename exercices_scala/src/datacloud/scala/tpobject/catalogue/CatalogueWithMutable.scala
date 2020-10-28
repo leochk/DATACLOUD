@@ -3,7 +3,7 @@ package datacloud.scala.tpobject.catalogue
 import scala.collection.mutable.HashMap
 
 class CatalogueWithMutable extends Catalogue {
-   private var map: HashMap[String, Double] = HashMap();
+   protected var map: HashMap[String, Double] = HashMap();
    
    override def getPrice(produit: String): Double = {
      if (!map.contains(produit)) return -1.0
