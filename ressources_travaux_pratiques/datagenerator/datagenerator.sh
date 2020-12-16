@@ -70,7 +70,11 @@ while true; do
             if [ "$type" = "hbaseschema" ]
             then
             	[ "`env | grep MY_HBASE_HOME`" = "" ] &&  echo "la variable d'environnement $MY_HBASE_HOME doit être définie" && exit 1
-            	classpath="$WORKING_DIRECTORY/datagenerator.jar:"$(ls -l $MY_HBASE_HOME/lib/*.jar | tr -s ' ' | cut -d ' ' -f 9 | tr '\n' ':')
+            	classpath="$WORKING_DIRECTORY/datagenerator.jar"
+            	for file_jar in $(find $MY_HBASE_HOME/lib | grep jar)
+            	do
+            		classpath="${classpath}:$file_jar"
+            	done
             	required_jar="$required_jar $WORKING_DIRECTORY/datagenerator_hbaseext.jar"
             	target_jar="$WORKING_DIRECTORY/datagenerator_hbaseext.jar"
             fi
